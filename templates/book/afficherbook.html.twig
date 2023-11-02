@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #e5e5e5;
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        .actions a {
+            display: inline-block;
+            padding: 8px 15px;
+            text-decoration: none;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .actions a:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+<form method='post' action='/dql1'>
+<label>search by id</label>
+<input type='text' name='search'>
+<input type='submit' value='search'>
+</form>
+
+<table>
+    <thead>
+        <tr>
+                         <th>Ref</th>
+
+            <th>Title</th>
+            <th>Cetegorie</th>
+            <th>Publicationdate</th>
+            <th>Published</th>
+            <th>Author</th>
+            <th>Action</th>
+
+        </tr>
+    </thead>
+    <tbody>
+     {% set t = 0 %}
+          {% set f = 0 %}
+
+        {% for repo in response %}
+            <tr>  {#% if repo.published == 1 %#}
+            <td>{{ repo.ref }}</td>
+                <td>{{ repo.title }}</td>
+                <td>{{ repo.category }}</td>
+                <td>{{ repo.publicationDate |date('d/m/Y')}}</td>
+                <td>{{ repo.Published }}</td>
+                 <td>{{ repo.author }}</td>
+                <td> <a href="{{ path('update', {'ref': repo.ref}) }}" class="btn btn-primary" style="color: green">Modifier</a>
+               <a href="{{ path('deletebook', {'ref': repo.ref}) }}" class="btn btn-primary" style="color: red">deleteBook</a>
+                 <a href="{{ path('showbook', {'ref': repo.ref}) }}" class="btn btn-primary" style="color: green">show</a></td>
+
+                       {#% endif %#}
+
+     {% if repo.published == 1 %}
+     {% set t = t + 1 %}
+     {% endif %}
+     {% if repo.published == 0 %}
+     {% set f = f + 1 %}
+      {% endif %}
+
+
+
+
+
+
+              
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+ le nombre published est {{t}}
+le nombre unpublished est {{f}}
+</body>
+</html>

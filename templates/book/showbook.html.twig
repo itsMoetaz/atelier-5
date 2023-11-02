@@ -1,0 +1,13 @@
+
+ <td> <a href="{{ path('afficher')}}" class="btn btn-primary" style="color: green">show</a></td>
+
+{% block body %}
+    <h1>Détails de livre</h1>
+    <p>Nom de livre : {{ book.title }}</p>
+    <p>category de livre : {{ book.category }}</p>
+    <p>published : {{ book.published }}</p>
+        <p>dateof : {{ book.publicationDate  |date('d/m/Y')}}</p>
+               
+
+    {# Vous pouvez afficher d'autres détails de l'auteur ici #}
+{% endblock %}

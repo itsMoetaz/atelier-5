@@ -1,0 +1,60 @@
+<style>
+/* Styles pour le formulaire */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-submit {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Styles pour les erreurs de formulaire */
+.form-error {
+    color: #ff0000;
+    font-size: 14px;
+}
+
+</style>
+<div class="form-container">
+    {{ form_start(f) }}
+    <div class="form-group">
+        <label for="{{ f.username.vars.id }}" class="form-label">Username</label>
+        {{ form_widget(f.username, {'attr': {'class': 'form-input'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="{{ f.email.vars.id }}" class="form-label">Mail</label>
+        {{ form_widget(f.email, {'attr': {'class': 'form-input'}}) }}
+    </div>
+    <div class="form-group">
+        <label for="{{ f.nb_books.vars.id }}" class="form-label">nb_books</label>
+        {{ form_widget(f.nb_books, {'attr': {'class': 'form-input'}}) }}
+    </div>
+        <button type="submit" class="form-submit">Ajouter Auteur</button>
+    </div>
+    {{ form_end(f) }}
+</div>
